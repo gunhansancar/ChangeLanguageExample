@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Change Language Example</string>
+    <string name="main_activity_title">This title is in English</string>
+    <string name="main_activity_desc">This is the description text in English.</string>
+    <string name="main_activity_about">This is about text in English.</string>
+    <string name="main_activity_to_tr_button">Turkish</string>
+    <string name="main_activity_to_en_button">English</string>
+</resources>
