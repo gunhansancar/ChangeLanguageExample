@@ -1,5 +1,7 @@
 package com.gunhansancar.changelanguageexample;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -27,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		ButterKnife.setDebug(true);
 		ButterKnife.bind(this);
+
+		setTitle(getString(R.string.main_activity_toolbar_title));
+	}
+
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(LocaleHelper.onAttach(base));
 	}
 
 	@OnClick(R.id.toTRButton)
@@ -42,12 +50,15 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void updateViews(String languageCode) {
-		LocaleHelper.setLocale(this, languageCode);
+		Context context = LocaleHelper.setLocale(this, languageCode);
+		Resources resources = context.getResources();
 
-		mTitleTextView.setText(R.string.main_activity_title);
-		mDescTextView.setText(R.string.main_activity_desc);
-		mAboutTextView.setText(R.string.main_activity_about);
-		mToTRButton.setText(R.string.main_activity_to_tr_button);
-		mToENButton.setText(R.string.main_activity_to_en_button);
+		mTitleTextView.setText(resources.getString(R.string.main_activity_title));
+		mDescTextView.setText(resources.getString(R.string.main_activity_desc));
+		mAboutTextView.setText(resources.getString(R.string.main_activity_about));
+		mToTRButton.setText(resources.getString(R.string.main_activity_to_tr_button));
+		mToENButton.setText(resources.getString(R.string.main_activity_to_en_button));
+
+		setTitle(resources.getString(R.string.main_activity_toolbar_title));
 	}
 }

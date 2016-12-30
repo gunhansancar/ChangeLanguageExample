@@ -1,6 +1,7 @@
 package com.gunhansancar.changelanguageexample;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.gunhansancar.changelanguageexample.helper.LocaleHelper;
 
@@ -12,6 +13,10 @@ public class MainApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		LocaleHelper.onCreate(this, "en");
+	}
+
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(LocaleHelper.onAttach(base, "en"));
 	}
 }
